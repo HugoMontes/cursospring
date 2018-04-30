@@ -6,8 +6,11 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("/persona")
@@ -43,5 +46,37 @@ public class PersonaController {
         lista.add(new Persona("Jesus", 16));
         lista.add(new Persona("Ana", 28));
         return lista;
+    }
+    
+    @GetMapping("/formulario")
+    public String mostrarFormulario(Model model){
+        model.addAttribute("persona",new Persona());
+        return "persona/formulario";
+    }
+    
+    @PostMapping("/adicionar")
+    public ModelAndView mostrarFormulario(@ModelAttribute("persona") Persona persona){
+        ModelAndView mv=new ModelAndView("persona/resultado");
+        mv.addObject("persona",persona);
+        return mv;
+    }
+    
+    // Primera forma
+    @GetMapping("/redireccionar1")
+    public String redirect1(){
+        return "redirect:/persona/formulario";
+    }
+    
+    // Segunda forma    
+    @GetMapping("/redireccionar2")
+    public RedirectView redirect2(){
+        return new RedirectView("/persona/listado");
+    }
+    
+    // Generar error 500    
+    @GetMapping("/dividir")
+    public RedirectView dividir(){
+        int i=6/0;
+        return new RedirectView("/persona/formulario");
     }
 }
