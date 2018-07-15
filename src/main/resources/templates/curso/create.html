@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>NUEVO CURSO</h1>
+        <form action="#" th:action="@{/curso/save}" th:object="${curso}" method="post">
+            <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
+            <p>Descripcion: <input type="text" th:field="*{descripcion}"/></p>
+            <p>Precio: <input type="number" th:field="*{precio}"/></p>
+            <p>Horas: <input type="number" th:field="*{horas}"/></p>
+            <p><input type="submit" value="Enviar"/></p>
+        </form>
+    </body>
+</html>

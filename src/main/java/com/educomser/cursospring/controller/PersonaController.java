@@ -80,8 +80,11 @@ public class PersonaController {
         ModelAndView mv = new ModelAndView("persona/resultado");
         // Verificar que cumplan las condiciones en el modelo
         if (bindingResult.hasErrors()) {
+        	// Si existen errores muestra el formulario
             mv.setViewName("persona/formulario");
         } else {
+        	// Si NO existen errores mostrar resultado
+        	// enviando los datos obtenidos del formulario
             mv.setViewName("persona/resultado");
             mv.addObject("persona", persona);
         }
