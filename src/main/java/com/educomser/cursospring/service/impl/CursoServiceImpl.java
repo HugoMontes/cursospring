@@ -16,12 +16,10 @@ import com.educomser.cursospring.service.CursoService;
 @Service("cursoServiceImpl")
 public class CursoServiceImpl implements CursoService {
 
-	
 	@Autowired
 	@Qualifier("cursoJpaRepository")
 	private CursoJpaRepository cursoRepository;
-	
-	
+		
 	@Autowired
 	@Qualifier("cursoConverter")
 	private CursoConverter cursoConverter;
@@ -49,9 +47,18 @@ public class CursoServiceImpl implements CursoService {
 	}
 
 	@Override
-	public Curso updateCurso(CursoModel cursoModel) {
-		return cursoRepository.save(cursoConverter.modelToEntity(cursoModel));
-	}
-
+	public CursoModel updateCurso(CursoModel cursoModel) {
+		Curso curso=cursoRepository.save(cursoConverter.modelToEntity(cursoModel));
+		return cursoConverter.entityToModel(curso);
+	}	
 	
+	@Override
+	public List<CursoModel> listAllCursosByPrecio(float precio) {
+		List<Curso> cursos = cursoRepository.findByPrecio(precio);
+		List<CursoModel> cursosModel = new ArrayList<>();
+		for(Curso curso : cursos) {
+			cursosModel.add(cursoConverter.entityToModel(curso));
+		}
+		return cursosModel;
+	}
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -46,6 +47,15 @@ public class CursoController {
 		LOG.info("Call: saveCursos --PARAM: "+curso.toString());
 		cursoService.addCurso(curso);
 		return "redirect:/curso/listar";
+	}
+	
+	@GetMapping("/listar/precio/{precio}")
+	public ModelAndView listCursosByPrecio(@PathVariable("precio") float precio) {
+		LOG.info("Call: listAllCursos");
+		ModelAndView mv=new ModelAndView("curso/index");
+		mv.addObject("cursos", new CursoModel());
+		mv.addObject("cursos", cursoService.listAllCursosByPrecio(precio));
+		return mv;
 	}
 	
 }

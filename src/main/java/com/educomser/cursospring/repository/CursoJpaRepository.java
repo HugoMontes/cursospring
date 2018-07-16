@@ -14,7 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface CursoJpaRepository extends JpaRepository<Curso, Serializable> {
 	
 	// Implementa una query automaticamente
-	public abstract Curso findByPrecio(float precio);
+	public abstract List<Curso> findByPrecio(float precio);
 	
 	// Implementa una query automaticamente
 	public abstract Curso findByPrecioAndNombre(float precio, String nombre);
