@@ -16,4 +16,5 @@ public interface CursoService {
 
 	public abstract List<CursoModel> listAllCursosByPrecio(float precio);
 	
+	public abstract List<CursoModel> listAllPrecioMaxMin(float min, float max);
 }

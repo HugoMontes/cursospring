@@ -58,4 +58,13 @@ public class CursoController {
 		return mv;
 	}
 	
+	@GetMapping("/listar/precio/{min}/{max}")
+	public ModelAndView listCursosByPrecioMinMax(@PathVariable("min") float min, @PathVariable("max") float max) {
+		LOG.info("Call: listAllCursos");
+		ModelAndView mv=new ModelAndView("curso/index");
+		mv.addObject("cursos", new CursoModel());
+		mv.addObject("cursos", cursoService.listAllPrecioMaxMin(min,max));
+		return mv;
+	}
+	
 }

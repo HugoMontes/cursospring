@@ -61,4 +61,14 @@ public class CursoServiceImpl implements CursoService {
 		}
 		return cursosModel;
 	}
+
+	@Override
+	public List<CursoModel> listAllPrecioMaxMin(float min, float max) {
+		List<Curso> cursos = cursoRepository.findByPrecioMaxMin(min, max);
+		List<CursoModel> cursosModel = new ArrayList<>();
+		for(Curso curso : cursos) {
+			cursosModel.add(cursoConverter.entityToModel(curso));
+		}
+		return cursosModel;
+	}
 }
