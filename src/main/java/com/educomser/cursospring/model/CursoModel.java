@@ -1,54 +1,21 @@
-package com.educomser.cursospring.entity;
+package com.educomser.cursospring.model;
 
-import java.io.Serializable;
+public class CursoModel {
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="curso")
-public class Curso implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue
-	@Column(name="id")
-	private int id;
 	private String nombre;
 	private String descripcion;
 	private float precio;
 	private float horas;
-		
-	public Curso() {
+	
+	public CursoModel() {
 	}
-
-	public Curso(int id, String nombre, String descripcion, float precio, float horas) {
-		this.id = id;
+	
+	public CursoModel(String nombre, String descripcion, float precio, float horas) {
+		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.horas = horas;
-	}
-
-	/**
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	/**
@@ -112,8 +79,7 @@ public class Curso implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Curso [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
-				+ ", horas=" + horas + "]";
-	}	
-
+		return "CursoModel [nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio + ", horas="
+				+ horas + "]";
+	}
 }

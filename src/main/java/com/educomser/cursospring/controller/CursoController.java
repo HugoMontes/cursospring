@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.educomser.cursospring.entity.Curso;
-import com.educomser.cursospring.model.Persona;
+import com.educomser.cursospring.model.CursoModel;
 import com.educomser.cursospring.service.CursoService;
 
 @Controller
@@ -30,7 +29,7 @@ public class CursoController {
 	public ModelAndView listCursos() {
 		LOG.info("Call: listAllCursos");
 		ModelAndView mv=new ModelAndView("curso/index");
-		mv.addObject("cursos", new Curso());
+		mv.addObject("cursos", new CursoModel());
 		mv.addObject("cursos", cursoService.listAllCursos());
 		return mv;
 	}
@@ -38,12 +37,12 @@ public class CursoController {
 	@GetMapping("/create")
 	public String createCurso(Model model) {
 		LOG.info("Call: createCurso");
-        model.addAttribute("curso", new Curso());
+        model.addAttribute("curso", new CursoModel());
         return "curso/create";
     }
 	
 	@PostMapping("/save")
-	public String saveCurso(@ModelAttribute("curso") Curso curso){
+	public String saveCurso(@ModelAttribute("curso") CursoModel curso){
 		LOG.info("Call: saveCursos --PARAM: "+curso.toString());
 		cursoService.addCurso(curso);
 		return "redirect:/curso/listar";

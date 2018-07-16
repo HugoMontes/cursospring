@@ -108,7 +108,7 @@ public class PersonaController {
     // Generar error 500    
     @GetMapping("/dividir")
     public RedirectView dividir() {
-        int i = 6 / 0;
+        // int i = 6 / 0;
         return new RedirectView("/persona/formulario");
     }
 
